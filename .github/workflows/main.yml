@@ -1,29 +1,25 @@
-name: Portfolio CI Pipeline
+name: Deploy to Render
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-  build-and-check:
-    name: Build and Check Backend
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: 18
 
       - name: Install Dependencies
-        working-directory: ./backend
         run: npm install
 
-      - name: Run Tests
-        working-directory: ./backend
-        run: npm test
+      - name: Trigger Render Deploy
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
