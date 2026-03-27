@@ -20,8 +20,8 @@ body {
 }
 
 @keyframes glow {
-    from { text-shadow: 0 0 10px red; }
-    to { text-shadow: 0 0 30px red, 0 0 60px red; }
+    from { text-shadow: 0 0 10px blue; }
+    to { text-shadow: 0 0 30px blue, 0 0 60px blue; }
 }
 
 .subtitle { font-size: 20px; color: #ccc; margin-bottom: 40px; }
